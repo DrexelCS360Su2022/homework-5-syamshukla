@@ -21,17 +21,27 @@ dropLastDigit :: Integer -> Integer
 dropLastDigit n = n `div` 10
 
 toDigits :: Integer -> [Integer]
---convert integer to list of digits
+
 toDigits x
   | x <= 0 = []
   | otherwise = toDigits (dropLastDigit x) ++ [lastDigit x]
 
+toDigitsRev :: Integer -> [Integer]
+toDigitsRev x = reverse (toDigits x) 
+
 doubleEveryOther :: [Integer] -> [Integer]
 doubleEveryOther [] = []
-doubleEveryOther (x:y:z) = x * 2 : y : doubleEveryOther z
+doubleEveryOther [x] = [x]
+doubleEveryOther (x:y:xs) 
+  | even (length (x:y:xs)) = x*2 : y : doubleEveryOther xs
+  | otherwise = x : y*2 : doubleEveryOther xs
+
+
+
+
+
 
 sumDigits :: [Integer] -> Integer
---sum the digits of a list of integers
 sumDigits [] = 0
 sumDigits (x:y) = sum (toDigits x) + sumDigits y
 
