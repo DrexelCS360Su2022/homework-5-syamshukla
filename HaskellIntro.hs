@@ -15,22 +15,28 @@ isThisWorking = "Yes"
 --
 
 lastDigit :: Integer -> Integer
-lastDigit = error "lastDigit not yet defined"
+lastDigit n = n `mod` 10
 
 dropLastDigit :: Integer -> Integer
-dropLastDigit = error "dropLastDigit not yet defined"
+dropLastDigit n = n `div` 10
 
 toDigits :: Integer -> [Integer]
-toDigits = error "toDigits not yet defined"
+--convert integer to list of digits
+toDigits x
+  | x <= 0 = []
+  | otherwise = toDigits (dropLastDigit x) ++ [lastDigit x]
 
 doubleEveryOther :: [Integer] -> [Integer]
-doubleEveryOther = error "doubleEveryOther not yet defined"
+doubleEveryOther [] = []
+doubleEveryOther (x:y:z) = x * 2 : y : doubleEveryOther z
 
 sumDigits :: [Integer] -> Integer
-sumDigits = error "sumDigits not yet defined"
+--sum the digits of a list of integers
+sumDigits [] = 0
+sumDigits (x:y) = sum (toDigits x) + sumDigits y
 
 validate :: Integer -> Bool
-validate = error "validate not yet defined"
+validate x = (sumDigits (doubleEveryOther (toDigits x))) `mod` 10 == 0
 
 --
 -- Problem 2
