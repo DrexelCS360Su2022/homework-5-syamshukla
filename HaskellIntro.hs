@@ -51,13 +51,13 @@ pow :: (a -> a) -> Int -> a -> a
 pow f 0 x = x
 pow f n x = f (pow f (n-1) x)
 
-
-
 g :: Integer -> Integer
-g = error "g not yet defined"
-
+g (x) | x == 0 = 0
+      | otherwise = x - (pow g  1 (g (fromIntegral x-1)))
+ 
 h :: Integer -> Integer
-h = error "h not yet defined"
+h (x) | x == 0 = 0
+      | otherwise = x - (h (pow h  1 (h (h (fromIntegral x -1)))))
 
 d :: Int -> Integer -> Integer
 d = error "d not yet defined"
