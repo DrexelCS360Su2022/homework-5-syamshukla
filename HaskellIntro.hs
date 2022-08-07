@@ -60,7 +60,10 @@ h (x) | x == 0 = 0
       | otherwise = x - (pow h  1 (h (h (fromIntegral x -1))))
 
 d :: Int -> Integer -> Integer
-d = error "d not yet defined"
+d (x) | x == 0 = 0
+      | x == 2 = g (fromIntegral x)
+      | x == 3 = h (fromIntegral x)
+      | otherwise = x - (pow d  1 (d (d (fromIntegral x -1))))
 
 --
 -- Problem 3
