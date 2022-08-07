@@ -36,11 +36,6 @@ doubleEveryOther (x:y:xs)
   | even (length (x:y:xs)) = x*2 : y : doubleEveryOther xs
   | otherwise = x : y*2 : doubleEveryOther xs
 
-
-
-
-
-
 sumDigits :: [Integer] -> Integer
 sumDigits [] = 0
 sumDigits (x:y) = sum (toDigits x) + sumDigits y
@@ -53,7 +48,10 @@ validate x = (sumDigits (doubleEveryOther (toDigits x))) `mod` 10 == 0
 --
 
 pow :: (a -> a) -> Int -> a -> a
-pow = error "pow not yet defined"
+pow f 0 x = x
+pow f n x = f (pow f (n-1) x)
+
+
 
 g :: Integer -> Integer
 g = error "g not yet defined"
